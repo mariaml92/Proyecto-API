@@ -41,7 +41,7 @@ def get_predict():
                     VALUES(?,?,?,?,?) ''', (str_time, tv, radio, newspaper, pred))
     conn.commit()
     conn.close()
-    return 'con valores %.1f %.1f %.1f: %.3f' %(tv, radio, newspaper, str(pred)), 200
+    return 'con valores %s %s %s: %s' %(str(tv), str(radio), str(newspaper), str(pred)), 200
 
 
 @app.route('/review_predicts', methods=['GET'])
@@ -58,7 +58,7 @@ def return_predict():
 
 @app.route('/', methods=['GET'])
 def mensaje_inicial():
-    return 'Hola, soy tu predictor de ventas. (mensaje de prueba)'
+    return 'Hola, soy tu predictor de ventas. (mensaje de prueba2)'
 
 
 # app.run(port=4000)
