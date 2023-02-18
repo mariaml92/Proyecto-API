@@ -10,11 +10,12 @@ app.config['DEBUG'] = True
 
 root = '/home/mariaml92/Application_API/modelo_clase/'
 root_db='/home/mariaml92/Application_API/databases/'
+
 model = pickle.load(open(root + 'advertising.model', 'rb'))
 print(model.coef_)
 
 # POST {"TV":, "radio":, "newspaper":} -> It returns the sales prediction for input investments
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['POST', 'GET'])
 def get_predict():
 
     # Get current time for the PREDICTIONS table
@@ -26,6 +27,8 @@ def get_predict():
 
     # Get POST JSON data
     data = request.get_json()
+    if data==None:
+        data=request.args
     tv = data.get("TV",0)
     radio = data.get("radio",0)
     newspaper = data.get("newspaper",0)
